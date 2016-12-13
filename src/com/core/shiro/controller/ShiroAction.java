@@ -14,6 +14,7 @@ public class ShiroAction {
 
 	@RequestMapping("loginin")  
     public String login(HttpServletRequest request){  
+		System.out.println(">>>>>>>>>loginin");
          //当前Subject    
          Subject currentUser = SecurityUtils.getSubject();    
          //加密（md5+盐），返回一个32位的字符串小写  
@@ -32,6 +33,7 @@ public class ShiroAction {
 	
     @RequestMapping("toLogin")  
     public String toLogin(){  
+    	System.out.println(">>>>>>>>>>>>tologin");
     	return "login";  
     }
     
