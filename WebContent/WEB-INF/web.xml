@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" 
+	id="WebApp_ID" version="3.0">
+  	<display-name>coreFrame</display-name>
+    
+    <filter>  
+    	<filter-name>CharacterEncodingFilter</filter-name>  
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>  
+        <init-param>  
+        	<param-name>encoding</param-name>  
+            <param-value>utf-8</param-value>  
+        </init-param>  
+        <init-param>  
+        	<param-name>forceEncoding</param-name>  
+            <param-value>true</param-value>  
+        </init-param>  
+    </filter>  
+    <filter-mapping>  
+    	<filter-name>CharacterEncodingFilter</filter-name>  
+        <url-pattern>/*</url-pattern>  
+    </filter-mapping>  
+    
+    <!-- 配置ContextLoaderListener，此监听用来加载配置文件 -->
+    <listener>  
+    	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>  
+	</listener>
+    
+    <!-- 加载spring 配置文件 -->
+    <context-param>  
+    	<param-name>contextConfigLocation</param-name>  
+    	<param-value>classpath*:/spring/spring-common.xml</param-value>  
+	</context-param>
+	
+	<!-- 配置SpringMVC的核心Servlet -->
+	<servlet>  
+        <servlet-name>spring-mvc</servlet-name>  
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>  
+        <init-param>  
+            <description>spring mvc</description>  
+            <param-name>contextConfigLocation</param-name>  
+            <param-value>classpath*:/spring/spring-servlet.xml</param-value>  
+        </init-param>  
+        <load-on-startup>1</load-on-startup>  
+    </servlet>  
+    <servlet-mapping>
+    	<servlet-name>spring-mvc</servlet-name>  
+		<url-pattern>/</url-pattern>  
+   	</servlet-mapping>
+    
+   	<!-- 静态资源，不拦截 -->
+   	<servlet-mapping>  
+   		<servlet-name>default</servlet-name>  
+        <url-pattern>/html/*</url-pattern>  
+   	</servlet-mapping>  
+   	<servlet-mapping>  
+    	<servlet-name>default</servlet-name>  
+        <url-pattern>/js/*</url-pattern>  
+   	</servlet-mapping>  
+   	<servlet-mapping>  
+   		<servlet-name>default</servlet-name>  
+   		<url-pattern>/css/*</url-pattern>  
+   	</servlet-mapping>  
+   	<servlet-mapping>  
+   		<servlet-name>default</servlet-name>  
+   		<url-pattern>/images/*</url-pattern>  
+   	</servlet-mapping>   
+
+	<!-- 过滤器会将Hibernate的Session和一次完整的请求过程绑定起来，事务控制，必须配置此过滤器 -->
+   	<filter>  
+   		<filter-name>openSession</filter-name>  
+    	<filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class>  
+ 	</filter>  
+ 	<filter-mapping>  
+		<filter-name>openSession</filter-name>  
+		<url-pattern>/*</url-pattern>  
+ 	</filter-mapping>  
+
+	<welcome-file-list>  
+    	<welcome-file>login</welcome-file>  
+    </welcome-file-list>  
+    <error-page>  
+       	<error-code>404</error-code>  
+       	<location>/html/error/404.html</location>  
+    </error-page>  
+    <error-page>  
+    	<error-code>500</error-code>  
+       	<location>/html/error/500.html</location>  
+    </error-page>  
+</web-app>
+       
