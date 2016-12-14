@@ -44,7 +44,7 @@
 		<property name="packagesToScan">  
   			<list>  
     			<value>com.mvc.rest.entity</value>  
-    			<value>com.base.dao.entity</value>  
+    			<value>com.core.shiro.entity</value>  
  			</list>  
 		</property>  
  	</bean>  
@@ -72,7 +72,7 @@
     </tx:advice>  
     <aop:config>  
     	<aop:pointcut id="serviceOperation"  
-        	expression="execution(* com.mvc.rest.service.impl.*.*(..))" />  
+        	expression="execution(* com.core.shiro.service.impl.*.*(..))" />  
         <aop:advisor advice-ref="txAdvice" pointcut-ref="serviceOperation" />  
     </aop:config>  
 </beans>

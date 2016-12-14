@@ -26,6 +26,9 @@
 		<context:component-scan base-package="com.mvc.rest" use-default-filters="false">  
        		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />  
 		</context:component-scan> 
+		<context:component-scan base-package="com.core.shiro" use-default-filters="false">  
+       		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />  
+		</context:component-scan> 
 		
         <!-- 对模型视图名称的解析 -->
         <bean  class="org.springframework.web.servlet.view.InternalResourceViewResolver"  p:prefix="/WEB-INF/view/" p:suffix=".jsp" />

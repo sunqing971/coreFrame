@@ -32,6 +32,7 @@ public class SystemRealm extends AuthorizingRealm {
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(
 			AuthenticationToken authcToken) throws AuthenticationException {
+		 System.out.println(">>>shiro token:"+authcToken+"<");
 		//令牌——基于用户名和密码的令牌    
         UsernamePasswordToken token = (UsernamePasswordToken) authcToken;    
         //令牌中可以取出用户名  
@@ -43,7 +44,6 @@ public class SystemRealm extends AuthorizingRealm {
             	return new SimpleAuthenticationInfo(admin.getLoginname(), admin.getPwd(), getName());  
             }  
         }  
-          
 		return null;
 	}
 
